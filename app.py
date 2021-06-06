@@ -14,9 +14,9 @@ import time
 app = Flask(__name__)
 
 # Channel Access Token
-line_bot_api = LineBotApi('Z9wIs5xSAOaOPM8LoQz0pv/Tw9PoP0Ph2se6h1RlUEB0uSTKoRwBwSIJ0YQZ/9YWAneVWI5XQoAWuL5lkD2UEeuzhvMUlYZy+Re3psIaEyOAvtKPnrBCCp7OwM07CVWYSj1P/06bIRPxtY/Bp3whuAdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('76WUlkR2tplP1B2UcokpbtLwvPqOLPaVinGlKOZa5Q3rsZ1c+EPPSQkGVNXsGCqIPuf0XykI0SZeiul8L1YJeHnusR3efcr9EWwkthn++GRkWShrjCblyMCuBimcDrxQ1YgLQsHAatSUseiM+Yw6KgdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
-handler = WebhookHandler('ef72f810af4eee6fed399eae10ca7c10')
+handler = WebhookHandler('8b60532b9cadf514f5d0c72006d3ccf9')
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -33,14 +33,38 @@ def callback():
         abort(400)
     return 'OK'
 
-# 處理訊息
+
+#資料庫的部分
+import gspread
+from gspread_dataframe import set_with_dataframe
+from oauth2client.service_account import ServiceAccountCredentials
+
+def record_user_text(info):
+    # 這段是憑證認證的標準作業
+    scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('indigo-winter-315907-0edd187f4f0a.json', scope)
+    gc = gspread.authorize(credentials)
+
+    # 選擇試算表
+    sh = gc.open('星流派投資魔法師')
+
+    # 選擇要開始編輯的工作表
+    ws = sh.worksheet('用戶輸入資訊')
+    
+    #在工作表新增一列, 存入使用者的資訊
+    ws.append_row((info))
+
+
+
+
+# 處理訊息  ＃以下確認要不要用 Reply
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
     text=event.message.text
     user_id = event.source.user_id
     if text == "開始":
-        temp_text = "請問你的星座"
+        temp_text = "歡迎來到星流派投資魔法師，想抓住財富跟幸運，就請告訴我您的星座吧～（輸入格式：ＸＸ座）
         message = TextSendMessage(text=temp_text)
         line_bot_api.push_message(user_id, message)  
 
