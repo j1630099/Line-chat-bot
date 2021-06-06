@@ -57,6 +57,7 @@ def record_user_text(info):
 
 
 
+
 # 處理訊息  ＃以下確認要不要用 Reply
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
