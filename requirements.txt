@@ -3,3 +3,5 @@ flask
 bs4
 requests
 gspread
+spread-dataframe
+oauth2client
