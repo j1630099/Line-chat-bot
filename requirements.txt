@@ -1,4 +1,5 @@
 line-bot-sdk
 flask
-bueatifulsoup
+bs4
+
 
