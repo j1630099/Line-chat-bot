@@ -74,7 +74,7 @@ def handle_message(event):
         message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
         line_bot_api.push_message(user_id, message)
 
-        message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆星")
+        message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟")
         line_bot_api.push_message(user_id, message)
 
     elif text == "水瓶座":
@@ -84,7 +84,7 @@ def handle_message(event):
         message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
         line_bot_api.push_message(user_id, message)
 
-        message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"])
+        message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟")
         line_bot_api.push_message(user_id, message)
 
     elif text == "雙魚座":
