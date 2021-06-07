@@ -192,7 +192,7 @@ def handle_message(event):
         message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"])
         line_bot_api.push_message(user_id, message)
     
-    if text == "財運滾滾來":
+    elif text == "財運滾滾來":
             message = TextSendMessage(text="請輸入您的風險承受度，如：風險高 / 如：風險中 / 如：風險低")
             line_bot_api.reply_message(user_id, message)
 
