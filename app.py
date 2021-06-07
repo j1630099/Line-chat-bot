@@ -68,17 +68,21 @@ def handle_message(event):
         line_bot_api.push_message(user_id, message)  
 
     elif text == "天蠍座":
-        website_address = "https://astro.click108.com.tw/daily_7.php?iAstro=7&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
+        website_address = "https://astro.click108.com.tw/daily_7.php?iAstro=7&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
         dic_constellation = crawl(website_address)
                 
         message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
         line_bot_api.push_message(user_id, message)
 
-        message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟")
-        line_bot_api.push_message(user_id, message)
+        if int(dic_constellation["fortune_index"]) >= 3:
+            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
+            line_bot_api.push_message(user_id, message)
+        if int(dic_constellation["fortune_index"]) <= 2:
+            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
+            line_bot_api.push_message(user_id, message)
 
     elif text == "水瓶座":
-        website_address = "https://astro.click108.com.tw/daily_10.php?iAstro=10&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
+        website_address = "https://astro.click108.com.tw/daily_10.php?iAstro=10&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
         dic_constellation = crawl(website_address)
                 
         message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
@@ -88,7 +92,7 @@ def handle_message(event):
         line_bot_api.push_message(user_id, message)
 
     elif text == "雙魚座":
-        website_address = "https://astro.click108.com.tw/daily_11.php?iAstro=11&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
+        website_address = "https://astro.click108.com.tw/daily_11.php?iAstro=11&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
         dic_constellation = crawl(website_address)
                 
         message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
@@ -98,7 +102,7 @@ def handle_message(event):
         line_bot_api.push_message(user_id, message)
 
     elif text == "牡羊座":
-        website_address = "https://astro.click108.com.tw/daily_0.php?iAstro=0&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
+        website_address = "https://astro.click108.com.tw/daily_0.php?iAstro=0&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
         dic_constellation = crawl(website_address)
                 
         message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
@@ -108,7 +112,7 @@ def handle_message(event):
         line_bot_api.push_message(user_id, message)
 
     elif text == "金牛座":
-        website_address = "https://astro.click108.com.tw/daily_1.php?iAstro=1&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
+        website_address = "https://astro.click108.com.tw/daily_1.php?iAstro=1&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
         dic_constellation = crawl(website_address)
                 
         message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
@@ -118,7 +122,7 @@ def handle_message(event):
         line_bot_api.push_message(user_id, message)
 
     elif text == "雙子座":
-        website_address = "https://astro.click108.com.tw/daily_2.php?iAstro=2&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
+        website_address = "https://astro.click108.com.tw/daily_2.php?iAstro=2&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
         dic_constellation = crawl(website_address)
                 
         message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
@@ -128,7 +132,7 @@ def handle_message(event):
         line_bot_api.push_message(user_id, message)
 
     elif text == "巨蟹座":
-        website_address = "https://astro.click108.com.tw/daily_3.php?iAstro=3&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
+        website_address = "https://astro.click108.com.tw/daily_3.php?iAstro=3&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
         dic_constellation = crawl(website_address)
                 
         message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
@@ -138,7 +142,7 @@ def handle_message(event):
         line_bot_api.push_message(user_id, message)
 
     elif text == "獅子座":
-        website_address = "https://astro.click108.com.tw/daily_4.php?iAstro=4&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
+        website_address = "https://astro.click108.com.tw/daily_4.php?iAstro=4&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
         dic_constellation = crawl(website_address)
                 
         message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
@@ -149,7 +153,7 @@ def handle_message(event):
 
 
     elif text == "處女座":
-        website_address = "https://astro.click108.com.tw/daily_5.php?iAstro=5&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
+        website_address = "https://astro.click108.com.tw/daily_5.php?iAstro=5&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
         dic_constellation = crawl(website_address)
                 
         message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
@@ -159,7 +163,7 @@ def handle_message(event):
         line_bot_api.push_message(user_id, message)
 
     elif text == "天秤座":
-        website_address = "https://astro.click108.com.tw/daily_6.php?iAstro=6&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
+        website_address = "https://astro.click108.com.tw/daily_6.php?iAstro=6&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
         dic_constellation = crawl(website_address)
                 
         message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
@@ -169,7 +173,7 @@ def handle_message(event):
         line_bot_api.push_message(user_id, message)
 
     elif text == "射手座":
-        website_address = "https://astro.click108.com.tw/daily_8.php?iAstro=8&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
+        website_address = "https://astro.click108.com.tw/daily_8.php?iAstro=8&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
         dic_constellation = crawl(website_address)
                 
         message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
@@ -187,6 +191,10 @@ def handle_message(event):
 
         message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"])
         line_bot_api.push_message(user_id, message)
+    
+    if text == "財運滾滾來":
+            message = TextSendMessage(text="請輸入您的風險承受度，如：風險高 / 如：風險中 / 如：風險低")
+            line_bot_api.reply_message(user_id, message)
 
     else:
         message = TextSendMessage(text="輸入錯誤")
