@@ -56,8 +56,6 @@ def record_user_text(info):
 
 
 
-
-
 # 處理訊息  ＃以下確認要不要用 Reply
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -70,7 +68,18 @@ def handle_message(event):
         line_bot_api.push_message(user_id, message)  
 
     elif text == "天蠍座":
-        website_address = "https://astro.click108.com.tw/daily_10.php?iAstro=8&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
+        website_address = "https://astro.click108.com.tw/daily_10.php?iAstro=7&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
+        dic_constellation = crawl(website_address)
+                
+        message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
+        line_bot_api.push_message(user_id, message)
+
+        message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆星")
+        line_bot_api.push_message(user_id, message)
+        
+
+    elif text == "處女座":
+        website_address = "https://astro.click108.com.tw/daily_10.php?iAstro=5&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
         dic_constellation = crawl(website_address)
                 
         message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
@@ -78,8 +87,8 @@ def handle_message(event):
 
         message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"])
         line_bot_api.push_message(user_id, message)
-        
-    
+
+
     else:
         message = TextSendMessage(text="輸入錯誤")
         line_bot_api.push_message(user_id, message)
