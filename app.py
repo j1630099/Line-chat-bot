@@ -179,7 +179,7 @@ def handle_message(event):
         line_bot_api.push_message(user_id, message)
 
     elif text == "摩羯座":
-        website_address = "https://astro.click108.com.tw/daily_9.php?iAstro=9&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
+        website_address = "https://astro.click108.com.tw/daily_9.php?iAstro=9&Type=0&iAcDay=" + time.strftime('%Y-%m-%d', time.localtime())
         dic_constellation = crawl(website_address)
                 
         message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
