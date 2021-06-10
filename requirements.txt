@@ -5,7 +5,7 @@ requests
 gspread
 gspread-dataframe
 oauth2client
-webdriver_manager.chrome
+selenium
 pandas
 pyquery
 sklearn.datasets
