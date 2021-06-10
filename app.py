@@ -122,9 +122,7 @@ def handle_message(event):
         message =TemplateSendMessage(
             alt_text='Buttons alt text',
             template=buttons_template)
-        line_bot_api.reply_message(  # 回復傳入的訊息文字
-                    event.reply_token,
-                    message)
+        line_bot_api.push_message(user_id, message)
         
 
     if text == "天蠍座":
