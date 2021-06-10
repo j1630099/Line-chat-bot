@@ -12,7 +12,7 @@ from crawl_constellation import crawl
 import time
 
 ####修改的###
-from Stock_market_crawler import screen ,screen1
+'''from Stock_market_crawler import screen ,screen1
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -20,18 +20,18 @@ from selenium import webdriver
 import pandas as pd
 from pyquery import PyQuery as pq
 from time import sleep
-import pygsheets
+import pygsheets'''
 from database_functions import  get_fortune_index,get_risk,get_budget,record_stock,record_amount
 
 
-GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+'''GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--disable-gpu') 
 chrome_options.add_argument('--no-sandbox')
 chrome_options.binary_location = GOOGLE_CHROME_PATH
-browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)'''
 
 
 def stock_crawl(FL_ITEM0,FL_VAL_S0, FL_ITEM1,FL_VAL_S1,FL_SHEET,FL_SHEET2,FL_RULE0):
@@ -393,8 +393,8 @@ def handle_message(event):
 ####修改的###
     #Risk_Tolerance =  int(get_risk(user_id))
     #if Risk_Tolerance == 1 :
-    if text == "風險低":
-        Risk_Tolerance == 1 
+'''    if text == "風險低":
+        Risk_Tolerance = 1 
         #金融股爬蟲 - 風險承受度低
         browser = webdriver.Chrome(ChromeDriverManager().install())
         data_holdings = stock_crawl("近四季–ROA(%)–本季度", 1, "市值 (億元)",0,"股價統計_歷年直接平均","近3年平均均","產業類別||金控業")
@@ -415,7 +415,7 @@ def handle_message(event):
 
     #elif Risk_Tolerance == 2 :
     elif text == "風險中":
-        Risk_Tolerance == 2
+        Risk_Tolerance = 2
         #權值股爬蟲-風險承受度中
         browser = webdriver.Chrome(ChromeDriverManager().install())
         data = stock_crawl("年度–ROE(%)",15, "市值 (億元)",1700,"股價統計_歷年直接平均","近3年平均","")
@@ -432,7 +432,7 @@ def handle_message(event):
 
     #elif Risk_Tolerance == 3 :
     elif text == "風險高":
-        Risk_Tolerance == 3
+        Risk_Tolerance = 3
         #轉強股爬蟲 - 風險承受度高
         browser = webdriver.Chrome(ChromeDriverManager().install())
         data_strong = stock_crawl("當日：紅K棒棒幅(%)", 4, "單月營收年增減率(%)",20,"股價統計_歷年直接平均","近3年平均均","")
@@ -444,7 +444,60 @@ def handle_message(event):
         else:
             #record_stock(user_id, "今日無推薦個股")
             message = TextSendMessage(text= "今日無推薦個股")
-            line_bot_api.push_message(user_id, message)
+            line_bot_api.push_message(user_id, message)'''
+####修改的###
+#預算計算#
+    record_budget(user_id,text)
+    fortune_index = int(get_fortune_index(user_id))
+    balance = int(get_budget(user_id))
+    if  fortune_index == 1:
+        balance = balance*0.4
+        if Risk_Tolerance == 1:
+            balance = balance*0.82
+        elif Risk_Tolerance == 2:
+            balance = balance*0.91
+        elif Risk_Tolerance == 3:
+            balance = balance*1
+
+    elif  fortune_index == 2:
+        balance = balance*0.55
+        if Risk_Tolerance == 1:
+            balance = balance*0.82
+        elif Risk_Tolerance == 2:
+            balance = balance*0.91
+        elif Risk_Tolerance == 3:
+            balance = balance*1
+
+    elif  fortune_index == 3:
+        balance = balance*0.75
+        if Risk_Tolerance == 1:
+            balance = balance*0.82
+        elif Risk_Tolerance == 2:
+            balance = balance*0.91
+        elif Risk_Tolerance == 3:
+            balance = balance*1
+
+
+    elif  fortune_index == 4:
+        balance = balance*0.9
+        if Risk_Tolerance == 1:
+            balance = balance*0.82
+        elif Risk_Tolerance == 2:
+            balance = balance*0.91
+        elif Risk_Tolerance == 3:
+            balance = balance*1
+
+    elif  fortune_index == 5:
+        balance = balance*1
+        if Risk_Tolerance == 1:
+            balance = balance*0.82
+        elif Risk_Tolerance == 2:
+            balance = balance*0.91
+        elif Risk_Tolerance == 3:
+            balance = balance*1
+
+     message = TextSendMessage(text= balance)
+     line_bot_api.push_message(user_id, message)
 ####修改的###
 
 #### 一定要放在最後面的，注意有 “else"，所以新的東西請都加在上面喔 by 宜臻 ###
