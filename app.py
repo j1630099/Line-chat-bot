@@ -64,68 +64,67 @@ def handle_message(event):
     user_id = event.source.user_id
 
     if text == "開始":
-        message =TemplateSendMessage(
-            alt_text='Buttons template',
-            template=ButtonsTemplate(
-                title='魔法師咒語',
-                text='請選擇星座',
-                actions=[
-                    MessageAction(
-                        label='牡羊座',
-                        text='牡羊座'
-                    ),
-                    MessageAction(
-                        label='金牛座',
-                        text='金牛座'
-                    ),
-                    MessageAction(
-                        label='雙子座',
-                        text='雙子座'
-                    ),
-                    MessageAction(
-                        label='巨蟹座',
-                        text='巨蟹座'
-                    ),
-                    MessageAction(
-                        label='獅子座',
-                        text='獅子座'
-                    ),
-                    MessageAction(
-                        label='處女座',
-                        text='處女座'
-                    ),
-                    MessageAction(
-                        label='天秤座',
-                        text='天秤座'
-                    ),
-                    MessageAction(
-                        label='天蠍座',
-                        text='天蠍座'
-                    ),
-                    MessageAction(
-                        label='射手座',
-                        text='射手座'
-                    ),
-                    MessageAction(
-                        label='摩羯座',
-                        text='摩羯座'
-                    ),
-                    MessageAction(
-                        label='水瓶座',
-                        text='水瓶座'
-                    ),
-                    MessageAction(
-                        label='雙魚座',
-                        text='雙魚座'
-                    )
-                ]
-            )
+        buttons_template = ButtonsTemplate(
+            title='魔法師咒語',
+            text='請選擇星座',
+            actions=[
+                MessageAction(
+                    label='牡羊座',
+                    text='牡羊座'
+                ),
+                MessageAction(
+                    label='金牛座',
+                    text='金牛座'
+                ),
+                MessageAction(
+                    label='雙子座',
+                    text='雙子座'
+                ),
+                MessageAction(
+                    label='巨蟹座',
+                    text='巨蟹座'
+                ),
+                MessageAction(
+                    label='獅子座',
+                    text='獅子座'
+                ),
+                MessageAction(
+                    label='處女座',
+                    text='處女座'
+                ),
+                MessageAction(
+                    label='天秤座',
+                    text='天秤座'
+                ),
+                MessageAction(
+                    label='天蠍座',
+                    text='天蠍座'
+                ),
+                MessageAction(
+                    label='射手座',
+                    text='射手座'
+                ),
+                MessageAction(
+                    label='摩羯座',
+                    text='摩羯座'
+                ),
+                MessageAction(
+                    label='水瓶座',
+                    text='水瓶座'
+                ),
+                MessageAction(
+                    label='雙魚座',
+                    text='雙魚座'
+                )
+            ]
         )
-        info = [user_id] #這邊看我們規定用戶以什麼格式輸入, 暫定為星座,風險等級,預算(以逗號分隔)
-        record_user_text(info) #將資料存至google表單
+
+        message =TemplateSendMessage(
+            alt_text='Buttons alt text',
+            template=buttons_template)
         line_bot_api.reply_message(  # 回復傳入的訊息文字
                     event.reply_token,
-                    TextSendMessage(text = message)
+                    message)
         
 
     if text == "天蠍座":
