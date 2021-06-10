@@ -15,8 +15,8 @@ import time
 from Stock_market_crawler import screen ,screen1
 import requests
 from bs4 import BeautifulSoup
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+#from selenium import webdriver
+#from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 from pyquery import PyQuery as pq
 from time import sleep
