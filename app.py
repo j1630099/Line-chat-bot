@@ -515,8 +515,8 @@ def handle_message(event):
         elif Risk_Tolerance == 3:
             balance = balance*1
 
-     message = TextSendMessage(text= balance)
-     line_bot_api.push_message(user_id, message)
+        message = TextSendMessage(text= balance)
+        line_bot_api.push_message(user_id, message)
 ####修改的###
 
 #### 一定要放在最後面的，注意有 “else"，所以新的東西請都加在上面喔 by 宜臻 ###
