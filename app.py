@@ -123,7 +123,7 @@ def handle_message(event):
                 ]
             )
         )
- 
+    )
 
 
     if text == "天蠍座":
@@ -298,18 +298,13 @@ def handle_message(event):
             message = TextSendMessage(text="請輸入您的風險承受度，如：風險高 / 如：風險中 / 如：風險低，讓魔法師給你最佳投資建議")
             line_bot_api.push_message(user_id, message)
 
-#請接著這裡寫下去
-
-
-
-
-
-
-
     else:
         message = TextSendMessage(text="輸入錯誤")
         line_bot_api.push_message(user_id, message)
         pass
+
+#請接著這裡寫下去
+  
 
 import os
 if __name__ == "__main__":
