@@ -64,9 +64,7 @@ def handle_message(event):
     user_id = event.source.user_id
 
     if text == "開始":
-        line_bot_api.reply_message(
-        event.reply_token,
-        TemplateSendMessage(
+        message=TemplateSendMessage(
             alt_text='Buttons template',
             template=ButtonsTemplate(
                 title='魔法師咒語',
@@ -124,7 +122,7 @@ def handle_message(event):
             )
         )
     )
-
+    line_bot_api.push_message(user_id, message)
 
     if text == "天蠍座":
         website_address = "https://astro.click108.com.tw/daily_7.php?iAstro=7#lucky"
