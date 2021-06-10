@@ -62,10 +62,76 @@ def handle_message(event):
 
     text=event.message.text
     user_id = event.source.user_id
+    for event in events:
+        if isinstance(event, MessageEvent):  # 如果有訊息事件
+
+            if event.message.text == "開始":
+
+                line_bot_api.reply_message(  # 回復傳入的訊息文字
+                    event.reply_token,
+                    TemplateSendMessage(
+                        alt_text='Buttons template',
+                        template=ButtonsTemplate(
+                            title='魔法師咒語',
+                            text='請選擇星座',
+                            actions=[
+                                MessageTemplateAction(
+                                    label='牡羊座',
+                                    text='牡羊座'
+                                ),
+                                MessageTemplateAction(
+                                    label='金牛座',
+                                    text='金牛座'
+                                ),
+                                MessageTemplateAction(
+                                    label='雙子座',
+                                    text='雙子座'
+                                ),
+                                MessageTemplateAction(
+                                    label='巨蟹座',
+                                    text='巨蟹座'
+                                ),
+                                MessageTemplateAction(
+                                    label='獅子座',
+                                    text='獅子座'
+                                ),
+                                MessageTemplateAction(
+                                    label='處女座',
+                                    text='處女座'
+                                ),
+                                MessageTemplateAction(
+                                    label='天秤座',
+                                    text='天秤座'
+                                ),
+                                MessageTemplateAction(
+                                    label='天蠍座',
+                                    text='天蠍座'
+                                ),
+                                MessageTemplateAction(
+                                    label='射手座',
+                                    text='射手座'
+                                ),
+                                MessageTemplateAction(
+                                    label='摩羯座',
+                                    text='摩羯座'
+                                ),
+                                MessageTemplateAction(
+                                    label='水瓶座',
+                                    text='水瓶座'
+                                ),
+                                MessageTemplateAction(
+                                    label='雙魚座',
+                                    text='雙魚座'
+                                )
+                            ]
+                        )
+                    )
+                )
     if text == "開始":
         temp_text = "歡迎來到星流派投資魔法師，想抓住財富跟幸運，就請告訴我您的星座吧～（輸入格式：ＸＸ座) "
         message = TextSendMessage(text=temp_text)
         line_bot_api.push_message(user_id, message)  
+
 
     elif text == "天蠍座":
         website_address = "https://astro.click108.com.tw/daily_7.php?iAstro=7#lucky"
