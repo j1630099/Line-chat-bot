@@ -16,20 +16,27 @@ from Stock_market_crawler import screen ,screen1
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 import pandas as pd
 from pyquery import PyQuery as pq
 from time import sleep
 import pygsheets
 from database_functions import  get_fortune_index,get_risk,get_budget,record_stock,record_amount
-import os
 
 
-chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-chrome_options.add_argument('--disable-dev-shm-usage')
+
+chrome_options = Options()
+chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('--no-sandbox')
-driver = webdriver.Chrome(executable_path=os.environ.get(CHROMEDRIVER_PATH), chrome_options=chrome_options)
+chrome_options.add_argument("--disable-notifications")
+chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"])
+chrome_options.add_argument('--disable-extensions')
+chrome_options.add_argument('start-maximized')
+chrome_options.add_argument('disable-infobars')
+chrome_options.add_argument('disable-blink-features=AutomationControlled')
+chrome_options.add_argument('user-agent=Type user agent here')
+chrome = webdriver.Chrome(options=chrome_options)
 
 
 def stock_crawl(FL_ITEM0,FL_VAL_S0, FL_ITEM1,FL_VAL_S1,FL_SHEET,FL_SHEET2,FL_RULE0):
@@ -41,7 +48,7 @@ def stock_crawl(FL_ITEM0,FL_VAL_S0, FL_ITEM1,FL_VAL_S1,FL_SHEET,FL_SHEET2,FL_RUL
 
     #請求網站
     list_req = requests.get(url, headers = headers,  params = my_params )
-    driver.get(list_req.url)
+    chrome.get(list_req.url)
     query_button = browser.find_element_by_css_selector("#MENU10 > tbody > tr:nth-child(2) > td > form > table > tbody > tr:nth-child(19) > td:nth-child(2) > table > tbody > tr > td:nth-child(2) > nobr > input[type=submit]")
     query_button.click()
     sleep(0.5)
