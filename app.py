@@ -106,15 +106,15 @@ def handle_message(event):
                         label='射手座',
                         text='射手座'
                     ),
-                    MessageTemplateAction(
+                    MessageAction(
                         label='摩羯座',
                         text='摩羯座'
                     ),
-                    MessageTemplateAction(
+                    MessageAction(
                         label='水瓶座',
                         text='水瓶座'
                     ),
-                    MessageTemplateAction(
+                    MessageAction(
                         label='雙魚座',
                         text='雙魚座'
                     )
