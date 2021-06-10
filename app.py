@@ -64,7 +64,6 @@ def handle_message(event):
     user_id = event.source.user_id
 
     if text == "開始":
-
         buttons_template = ButtonsTemplate(
             title='魔法師咒語', text='請選擇星座', actions=[
                 MessageAction(
@@ -300,22 +299,12 @@ def handle_message(event):
         buttons_template = ButtonsTemplate(
             title='Button Template', text='下面有不同功能的button', actions=[
                 URIAction(label='好看的影片喔^^', uri='https://www.youtube.com/watch?v=072tU1tamd0'),
-                PostbackAction(label='Postback', data='這就是postback'),
                 MessageAction(label='想要再玩一次', text='開始')#幫用戶說一段指定訊息
             ])
         template_message = TemplateSendMessage(
             alt_text='Buttons alt text', template=buttons_template) #alt_text為無法輸出時產生的字樣
         line_bot_api.reply_message(event.reply_token, template_message)
         
-
-@handler.add(PostbackEvent)
-def handle_message(event):
-
-    text=event.postback.data
-    user_id = event.source.user_id
-
-    message = TextSendMessage(text="這是postback的資訊： "+text)
-    line_bot_api.push_message(user_id, message) 
 
 #請接著這裡寫下去
   
