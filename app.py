@@ -64,72 +64,69 @@ def handle_message(event):
     user_id = event.source.user_id
 
     if text == "開始":
-
-
-        line_bot_api.reply_message(  # 回復傳入的訊息文字
-            event.reply_token,
-            TemplateSendMessage(
-                alt_text='Buttons template',
-                template=ButtonsTemplate(
-                    title='魔法師咒語',
-                    text='請選擇星座',
-                    actions=[
-                        MessageTemplateAction(
-                            label='牡羊座',
-                            text='牡羊座'
-                        ),
-                        MessageTemplateAction(
-                            label='金牛座',
-                            text='金牛座'
-                        ),
-                        MessageTemplateAction(
-                            label='雙子座',
-                            text='雙子座'
-                        ),
-                        MessageTemplateAction(
-                            label='巨蟹座',
-                            text='巨蟹座'
-                        ),
-                        MessageTemplateAction(
-                            label='獅子座',
-                            text='獅子座'
-                        ),
-                        MessageTemplateAction(
-                            label='處女座',
-                            text='處女座'
-                        ),
-                        MessageTemplateAction(
-                            label='天秤座',
-                            text='天秤座'
-                        ),
-                        MessageTemplateAction(
-                            label='天蠍座',
-                            text='天蠍座'
-                        ),
-                        MessageTemplateAction(
-                            label='射手座',
-                            text='射手座'
-                        ),
-                        MessageTemplateAction(
-                            label='摩羯座',
-                            text='摩羯座'
-                        ),
-                        MessageTemplateAction(
-                            label='水瓶座',
-                            text='水瓶座'
-                        ),
-                        MessageTemplateAction(
-                            label='雙魚座',
-                            text='雙魚座'
-                        )
-                    ]
-                )
+        line_bot_api.reply_message(
+        event.reply_token,
+        TemplateSendMessage(
+            alt_text='Buttons template',
+            template=ButtonsTemplate(
+                title='魔法師咒語',
+                text='請選擇星座',
+                actions=[
+                    MessageTemplateAction(
+                        label='牡羊座',
+                        text='牡羊座'
+                    ),
+                    MessageTemplateAction(
+                        label='金牛座',
+                        text='金牛座'
+                    ),
+                    MessageTemplateAction(
+                        label='雙子座',
+                        text='雙子座'
+                    ),
+                    MessageTemplateAction(
+                        label='巨蟹座',
+                        text='巨蟹座'
+                    ),
+                    MessageTemplateAction(
+                        label='獅子座',
+                        text='獅子座'
+                    ),
+                    MessageTemplateAction(
+                        label='處女座',
+                        text='處女座'
+                    ),
+                    MessageTemplateAction(
+                        label='天秤座',
+                        text='天秤座'
+                    ),
+                    MessageTemplateAction(
+                        label='天蠍座',
+                        text='天蠍座'
+                    ),
+                    MessageTemplateAction(
+                        label='射手座',
+                        text='射手座'
+                    ),
+                    MessageTemplateAction(
+                        label='摩羯座',
+                        text='摩羯座'
+                    ),
+                    MessageTemplateAction(
+                        label='水瓶座',
+                        text='水瓶座'
+                    ),
+                    MessageTemplateAction(
+                        label='雙魚座',
+                        text='雙魚座'
+                    )
+                ]
             )
         )
  
 
 
-    elif text == "天蠍座":
+    if text == "天蠍座":
         website_address = "https://astro.click108.com.tw/daily_7.php?iAstro=7#lucky"
         dic_constellation = crawl(website_address)
                 
