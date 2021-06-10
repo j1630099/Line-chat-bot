@@ -121,8 +121,7 @@ def handle_message(event):
                 ]
             )
         )
-    )
-    line_bot_api.push_message(user_id, message)
+        line_bot_api.push_message(user_id, message)
 
     if text == "天蠍座":
         website_address = "https://astro.click108.com.tw/daily_7.php?iAstro=7#lucky"
