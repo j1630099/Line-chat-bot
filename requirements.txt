@@ -7,7 +7,6 @@ gspread-dataframe
 oauth2client
 pandas
 pyquery
-sklearn.datasets
 pygsheets
 os
 selenium
