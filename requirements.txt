@@ -10,3 +10,4 @@ pyquery
 sklearn.datasets
 pygsheets
 os
+selenium
