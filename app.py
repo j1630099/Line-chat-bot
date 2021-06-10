@@ -127,13 +127,10 @@ def handle_message(event):
                         )
                     )
                 )
-    if text == "開始":
-        temp_text = "歡迎來到星流派投資魔法師，想抓住財富跟幸運，就請告訴我您的星座吧～（輸入格式：ＸＸ座) "
-        message = TextSendMessage(text=temp_text)
-        line_bot_api.push_message(user_id, message)  
+ 
 
 
-    elif text == "天蠍座":
+    if text == "天蠍座":
         website_address = "https://astro.click108.com.tw/daily_7.php?iAstro=7#lucky"
         dic_constellation = crawl(website_address)
                 
