@@ -8,5 +8,4 @@ oauth2client
 pandas
 pyquery
 pygsheets
-os
 selenium
