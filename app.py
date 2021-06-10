@@ -18,10 +18,8 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
-import time
 from pyquery import PyQuery as pq
 from time import sleep
-from sklearn.datasets import make_classification
 import pygsheets
 from database_functions import  get_fortune_index,get_risk,get_budget,record_stock,record_amount
 
