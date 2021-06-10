@@ -64,7 +64,7 @@ def handle_message(event):
     user_id = event.source.user_id
 
     if text == "開始":
-        message=TemplateSendMessage(
+        message =TemplateSendMessage(
             alt_text='Buttons template',
             template=ButtonsTemplate(
                 title='魔法師咒語',
@@ -121,7 +121,12 @@ def handle_message(event):
                 ]
             )
         )
-        line_bot_api.push_message(user_id, message)
+        info = [user_id] #這邊看我們規定用戶以什麼格式輸入, 暫定為星座,風險等級,預算(以逗號分隔)
+        record_user_text(info) #將資料存至google表單
+        line_bot_api.reply_message(  # 回復傳入的訊息文字
+                    event.reply_token,
+                    TextSendMessage(text = message)
+        
 
     if text == "天蠍座":
         website_address = "https://astro.click108.com.tw/daily_7.php?iAstro=7#lucky"
