@@ -9,3 +9,4 @@ pandas
 pyquery
 sklearn.datasets
 pygsheets
+os
