@@ -15,13 +15,20 @@ import time
 from Stock_market_crawler import screen ,screen1
 import requests
 from bs4 import BeautifulSoup
-#from selenium import webdriver
+from selenium import webdriver
 #from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 from pyquery import PyQuery as pq
 from time import sleep
 import pygsheets
 from database_functions import  get_fortune_index,get_risk,get_budget,record_stock,record_amount
+
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--disable-gpu') 
+chrome_options.add_argument('--no-sandbox')
+chrome_options.binary_location = GOOGLE_CHROME_PATH
+browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+
 
 def stock_crawl(FL_ITEM0,FL_VAL_S0, FL_ITEM1,FL_VAL_S1,FL_SHEET,FL_SHEET2,FL_RULE0):
 
