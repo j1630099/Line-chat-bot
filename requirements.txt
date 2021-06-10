@@ -11,4 +11,4 @@ pandas
 pyquery
 sklearn.datasets
 pygsheets
-
+selenium==3.8.0
