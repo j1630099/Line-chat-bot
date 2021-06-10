@@ -394,7 +394,7 @@ def handle_message(event):
 
 
     #elif Risk_Tolerance == 3 :
-    if text == "風險高":
+    elif text == "風險高":
         Risk_Tolerance == 3
         #轉強股爬蟲 - 風險承受度高
         browser = webdriver.Chrome(ChromeDriverManager().install())
