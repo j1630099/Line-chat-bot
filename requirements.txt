@@ -7,7 +7,6 @@ gspread-dataframe
 oauth2client
 Stock_market_crawler
 selenium
-selenium.webdriver.support.ui
 webdriver_manager.chrome
 pandas
 pyquery
