@@ -9,4 +9,3 @@ pandas
 pyquery
 pygsheets
 selenium
-webdriver-manager.chrome
