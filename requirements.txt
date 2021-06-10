@@ -5,11 +5,10 @@ requests
 gspread
 gspread-dataframe
 oauth2client
-Stock_market_crawler
 selenium
 webdriver_manager.chrome
 pandas
 pyquery
 sklearn.datasets
 pygsheets
-database_functions
+
