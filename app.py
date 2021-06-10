@@ -70,39 +70,39 @@ def handle_message(event):
                 title='魔法師咒語',
                 text='請選擇星座',
                 actions=[
-                    MessageTemplateAction(
+                    MessageAction(
                         label='牡羊座',
                         text='牡羊座'
                     ),
-                    MessageTemplateAction(
+                    MessageAction(
                         label='金牛座',
                         text='金牛座'
                     ),
-                    MessageTemplateAction(
+                    MessageAction(
                         label='雙子座',
                         text='雙子座'
                     ),
-                    MessageTemplateAction(
+                    MessageAction(
                         label='巨蟹座',
                         text='巨蟹座'
                     ),
-                    MessageTemplateAction(
+                    MessageAction(
                         label='獅子座',
                         text='獅子座'
                     ),
-                    MessageTemplateAction(
+                    MessageAction(
                         label='處女座',
                         text='處女座'
                     ),
-                    MessageTemplateAction(
+                    MessageAction(
                         label='天秤座',
                         text='天秤座'
                     ),
-                    MessageTemplateAction(
+                    MessageAction(
                         label='天蠍座',
                         text='天蠍座'
                     ),
-                    MessageTemplateAction(
+                    MessageAction(
                         label='射手座',
                         text='射手座'
                     ),
@@ -121,7 +121,7 @@ def handle_message(event):
                 ]
             )
         )
-        line_bot_api.push_message(user_id, message)
+    line_bot_api.push_message(user_id, message)
 
     if text == "天蠍座":
         website_address = "https://astro.click108.com.tw/daily_7.php?iAstro=7#lucky"
