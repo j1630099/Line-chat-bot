@@ -64,9 +64,7 @@ def handle_message(event):
     user_id = event.source.user_id
 
     if text == "開始":
-        temp_text = "歡迎來到星流派投資魔法師，想抓住財富跟幸運，就請告訴我您的星座吧～（輸入格式：ＸＸ座) "
-        message = TextSendMessage(text=temp_text)
-        line_bot_api.push_message(user_id, message) 
+
 
         line_bot_api.reply_message(  # 回復傳入的訊息文字
             event.reply_token,
