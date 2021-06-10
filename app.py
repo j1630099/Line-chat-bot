@@ -108,62 +108,83 @@ def handle_message(event):
 
     if text == "開始":
         buttons_template = ButtonsTemplate(
-            title='魔法師咒語', text='請選擇星座', actions=[
+            title='魔法師咒語', text='請選擇星座(這裡是水象星座)', actions=[
+                MessageAction(
+                    label='雙魚座',
+                    text='雙魚座'
+                ),
+                MessageAction(
+                    label='巨蟹座',
+                    text='巨蟹座'
+                ),
+                MessageAction(
+                    label='天蠍座',
+                    text='天蠍座'
+
+                )
+            ])
+        template_message = TemplateSendMessage(
+            alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
+        line_bot_api.push_message(user_id, template_message)
+
+        buttons_template = ButtonsTemplate(
+            title='魔法師咒語', text='請選擇星座(這裡是火象星座)', actions=[
                 MessageAction(
                     label='牡羊座',
                     text='牡羊座'
+                ),
+                MessageAction(
+                    label='射手座',
+                    text='射手座'
+                ),
+                MessageAction(
+                    label='獅子座',
+                    text='獅子座'
+
                 )
             ])
-        """
-        MessageAction(
-            label='金牛座',
-            text='金牛座'
-        ),
-        MessageAction(
-            label='雙子座',
-            text='雙子座'
-        ),
-        MessageAction(
-            label='巨蟹座',
-            text='巨蟹座'
-        ),
-        MessageAction(
-            label='獅子座',
-            text='獅子座'
-        ),
-        MessageAction(
-            label='處女座',
-            text='處女座'
-        ),
-        MessageAction(
-            label='天秤座',
-            text='天秤座'
-        ),
-        MessageAction(
-            label='天蠍座',
-            text='天蠍座'
-        ),
-        MessageAction(
-            label='射手座',
-            text='射手座'
-        ),
-        MessageAction(
-            label='摩羯座',
-            text='摩羯座'
-        ),
-        MessageAction(
-            label='水瓶座',
-            text='水瓶座'
-        ),
-        MessageAction(
-            label='雙魚座',
-            text='雙魚座'
-        )
-        """
-            
         template_message = TemplateSendMessage(
-            alt_text='Buttons alt text', template=buttons_template) #alt_text為無法輸出時產生的字樣
-        line_bot_api.reply_message(event.reply_token, template_message)
+            alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
+        line_bot_api.push_message(user_id, template_message)
+
+        buttons_template = ButtonsTemplate(
+            title='魔法師咒語', text='請選擇星座(這裡是風象星座)', actions=[
+                MessageAction(
+                    label='天秤座',
+                    text='天秤座'
+                ),
+                MessageAction(
+                    label='雙子座',
+                    text='雙子座'
+                ),
+                MessageAction(
+                    label='水瓶座',
+                    text='水瓶座'
+                )
+            ])
+        template_message = TemplateSendMessage(
+            alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
+        line_bot_api.push_message(user_id, template_message)
+
+        buttons_template = ButtonsTemplate(
+            title='魔法師咒語', text='請選擇星座(這裡是土象星座)', actions=[
+                MessageAction(
+                    label='處女座',
+                    text='處女座'
+                ),
+                MessageAction(
+                    label='摩羯座',
+                    text='摩羯座'
+                ),
+                MessageAction(
+                    label='金牛座',
+                    text='金牛座'
+                )
+            ])
+        template_message = TemplateSendMessage(
+            alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
+        line_bot_api.push_message(user_id, template_message)
+
 
 
 
@@ -340,16 +361,21 @@ def handle_message(event):
     elif text == "財運滾滾來":
             message = TextSendMessage(text="請輸入您的風險承受度，如：風險高 / 如：風險中 / 如：風險低，讓魔法師給你最佳投資建議")
             line_bot_api.push_message(user_id, message)
+         
+    elif text == "結束":
+        pass
 
     else:
         buttons_template = ButtonsTemplate(
-            title='Button Template', text='下面有不同功能的button', actions=[
-                URIAction(label='好看的影片喔^^', uri='https://www.youtube.com/watch?v=072tU1tamd0'),
-                MessageAction(label='想要再玩一次', text='開始')#幫用戶說一段指定訊息
+            title='魔法師的小幫手', text='您可能輸入錯誤了，請重新選擇', actions=[
+                MessageAction(label='想輸入投資風險跟預算', text='財運滾滾來'),#幫用戶說一段指定訊息
+                MessageAction(label='今天問夠了，魔法師請休息', text='結束'),#幫用戶說一段指定訊息
+                MessageAction(label='想要輸入星座再玩一次', text='開始')#幫用戶說一段指定訊息
             ])
         template_message = TemplateSendMessage(
-            alt_text='Buttons alt text', template=buttons_template) #alt_text為無法輸出時產生的字樣
+            alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
         line_bot_api.reply_message(event.reply_token, template_message)
+
      
 
 #請接著這裡寫下去
