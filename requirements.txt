@@ -5,9 +5,7 @@ requests
 gspread
 gspread-dataframe
 oauth2client
-selenium
 pandas
 pyquery
 sklearn.datasets
 pygsheets
-selenium==3.8.0
