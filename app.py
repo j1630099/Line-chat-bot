@@ -21,7 +21,7 @@ from selenium.webdriver.chrome.options import Options
 import pandas as pd
 from pyquery import PyQuery as pq
 from time import sleep
-from database_functions import  get_fortune_index,get_risk,get_budget,record_stock,record_amount,record_risk,record_user_info
+from database_functions import  get_fortune_index,get_risk,get_budget,record_stock,record_amount,record_risk,record_user_info,record_budget,get_amount
 
 
 
@@ -115,10 +115,10 @@ def handle_message(event):
     user_id = event.source.user_id
     
     if text.isdigit() :
-        record_amount(user_id,int(text))
-        fortune_index = get_fortune_index(user_id)
-        Risk_Tolerance = get_risk(user_id)
-        balance = int(text)
+        record_budget(user_id,int(text))
+        fortune_index = int(get_fortune_index(user_id))
+        Risk_Tolerance = int(get_risk(user_id))
+        balance = int(get_budget(user_id))
         if  fortune_index == 1:
             balance = balance*0.4
             if Risk_Tolerance == 1:
@@ -438,8 +438,8 @@ def handle_message(event):
             record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
 
         elif text == "財運滾滾來":
-                message = TextSendMessage(text="請輸入您的風險承受度，如：風險高 / 如：風險中 / 如：風險低，讓魔法師給你最佳投資建議(需等待約40秒)")
-                line_bot_api.push_message(user_id, message)
+            message = TextSendMessage(text="請輸入您的風險承受度，如：風險高 / 如：風險中 / 如：風險低，讓魔法師給你最佳投資建議(需等待約40秒)")
+            line_bot_api.push_message(user_id, message)
 
         elif  text == "風險低":
             record_risk(user_id, 1)
