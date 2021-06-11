@@ -514,10 +514,10 @@ def handle_message(event):
         else:
             #record_stock(user_id, "今日無推薦個股")
             message = TextSendMessage(text= "今日無推薦個股")
-            line_bot_api.push_message(user_id, message)"""
+            line_bot_api.push_message(user_id, message)
 ####修改的###
 #預算計算#
-   """record_budget(user_id,text)
+    record_budget(user_id,text)
     fortune_index = int(get_fortune_index(user_id))
     balance = int(get_budget(user_id))
     if  fortune_index == 1:
