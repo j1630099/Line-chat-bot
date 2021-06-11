@@ -113,340 +113,8 @@ def handle_message(event):
 
     text=event.message.text
     user_id = event.source.user_id
-
-    if text == "開始":
-        buttons_template = ButtonsTemplate(
-            title='魔法師咒語', text='請選擇星座(這裡是水象星座)', actions=[
-                MessageAction(
-                    label='雙魚座',
-                    text='雙魚座'
-                ),
-                MessageAction(
-                    label='巨蟹座',
-                    text='巨蟹座'
-                ),
-                MessageAction(
-                    label='天蠍座',
-                    text='天蠍座'
-
-                )
-            ])
-        template_message = TemplateSendMessage(
-            alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
-        line_bot_api.push_message(user_id, template_message)
-
-        buttons_template = ButtonsTemplate(
-            title='魔法師咒語', text='請選擇星座(這裡是火象星座)', actions=[
-                MessageAction(
-                    label='牡羊座',
-                    text='牡羊座'
-                ),
-                MessageAction(
-                    label='射手座',
-                    text='射手座'
-                ),
-                MessageAction(
-                    label='獅子座',
-                    text='獅子座'
-
-                )
-            ])
-        template_message = TemplateSendMessage(
-            alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
-        line_bot_api.push_message(user_id, template_message)
-
-        buttons_template = ButtonsTemplate(
-            title='魔法師咒語', text='請選擇星座(這裡是風象星座)', actions=[
-                MessageAction(
-                    label='天秤座',
-                    text='天秤座'
-                ),
-                MessageAction(
-                    label='雙子座',
-                    text='雙子座'
-                ),
-                MessageAction(
-                    label='水瓶座',
-                    text='水瓶座'
-                )
-            ])
-        template_message = TemplateSendMessage(
-            alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
-        line_bot_api.push_message(user_id, template_message)
-
-        buttons_template = ButtonsTemplate(
-            title='魔法師咒語', text='請選擇星座(這裡是土象星座)', actions=[
-                MessageAction(
-                    label='處女座',
-                    text='處女座'
-                ),
-                MessageAction(
-                    label='摩羯座',
-                    text='摩羯座'
-                ),
-                MessageAction(
-                    label='金牛座',
-                    text='金牛座'
-                )
-            ])
-        template_message = TemplateSendMessage(
-            alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
-        line_bot_api.push_message(user_id, template_message)
-
-
-
-
-
-
-    elif text == "天蠍座":
-        website_address = "https://astro.click108.com.tw/daily_7.php?iAstro=7#lucky"
-        dic_constellation = crawl(website_address)
-                
-        message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
-        line_bot_api.push_message(user_id, message)
-
-        if int(dic_constellation["fortune_index"]) >= 3:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-        if int(dic_constellation["fortune_index"]) <= 2:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-        record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
-
-    elif text == "水瓶座":
-        website_address = "https://astro.click108.com.tw/daily_10.php?iAstro=10&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
-        dic_constellation = crawl(website_address)
-                
-        message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
-        line_bot_api.push_message(user_id, message)
-
-        if int(dic_constellation["fortune_index"]) >= 3:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-        if int(dic_constellation["fortune_index"]) <= 2:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-        
-        record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
-
-    elif text == "雙魚座":
-        website_address = "https://astro.click108.com.tw/daily_11.php?iAstro=11&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
-        dic_constellation = crawl(website_address)
-                
-        message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
-        line_bot_api.push_message(user_id, message)
-
-        if int(dic_constellation["fortune_index"]) >= 3:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-        if int(dic_constellation["fortune_index"]) <= 2:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-            
-        record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
-
-    elif text == "牡羊座":
-        website_address = "https://astro.click108.com.tw/daily_0.php?iAstro=0&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
-        dic_constellation = crawl(website_address)
-                
-        message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
-        line_bot_api.push_message(user_id, message)
-
-        if int(dic_constellation["fortune_index"]) >= 3:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-        if int(dic_constellation["fortune_index"]) <= 2:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-            
-        record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
-
-    elif text == "金牛座":
-        website_address = "https://astro.click108.com.tw/daily_1.php?iAstro=1&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
-        dic_constellation = crawl(website_address)
-                
-        message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
-        line_bot_api.push_message(user_id, message)
-
-        if int(dic_constellation["fortune_index"]) >= 3:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-        if int(dic_constellation["fortune_index"]) <= 2:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-            
-        record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
-
-    elif text == "雙子座":
-        website_address = "https://astro.click108.com.tw/daily_2.php?iAstro=2&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
-        dic_constellation = crawl(website_address)
-                
-        message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
-        line_bot_api.push_message(user_id, message)
-
-        if int(dic_constellation["fortune_index"]) >= 3:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-        if int(dic_constellation["fortune_index"]) <= 2:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-            
-        record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
-
-    elif text == "巨蟹座":
-        website_address = "https://astro.click108.com.tw/daily_3.php?iAstro=3&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
-        dic_constellation = crawl(website_address)
-                
-        message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
-        line_bot_api.push_message(user_id, message)
-
-        if int(dic_constellation["fortune_index"]) >= 3:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-        if int(dic_constellation["fortune_index"]) <= 2:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-            
-        record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
-
-    elif text == "獅子座":
-        website_address = "https://astro.click108.com.tw/daily_4.php?iAstro=4&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
-        dic_constellation = crawl(website_address)
-                
-        message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
-        line_bot_api.push_message(user_id, message)
-
-        if int(dic_constellation["fortune_index"]) >= 3:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-        if int(dic_constellation["fortune_index"]) <= 2:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-            
-        record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
-
-    elif text == "處女座":
-        website_address = "https://astro.click108.com.tw/daily_5.php?iAstro=5&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
-        dic_constellation = crawl(website_address)
-                
-        message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
-        line_bot_api.push_message(user_id, message)
-
-        if int(dic_constellation["fortune_index"]) >= 3:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-        if int(dic_constellation["fortune_index"]) <= 2:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-            
-        record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
-
-    elif text == "天秤座":
-        website_address = "https://astro.click108.com.tw/daily_6.php?iAstro=6&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
-        dic_constellation = crawl(website_address)
-                
-        message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
-        line_bot_api.push_message(user_id, message)
-
-        if int(dic_constellation["fortune_index"]) >= 3:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-        if int(dic_constellation["fortune_index"]) <= 2:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-            
-        record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
-
-    elif text == "射手座":
-        website_address = "https://astro.click108.com.tw/daily_8.php?iAstro=8&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
-        dic_constellation = crawl(website_address)
-                
-        message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
-        line_bot_api.push_message(user_id, message)
-
-        if int(dic_constellation["fortune_index"]) >= 3:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-        if int(dic_constellation["fortune_index"]) <= 2:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-            
-        record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
-
-    elif text == "摩羯座":
-        website_address = "https://astro.click108.com.tw/daily_9.php?iAstro=9&Type=0&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
-        dic_constellation = crawl(website_address)
-                
-        message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
-        line_bot_api.push_message(user_id, message)
-
-        if int(dic_constellation["fortune_index"]) >= 3:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-        if int(dic_constellation["fortune_index"]) <= 2:
-            message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
-            line_bot_api.push_message(user_id, message)
-            
-        record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
     
-    elif text == "財運滾滾來":
-            message = TextSendMessage(text="請輸入您的風險承受度，如：風險高 / 如：風險中 / 如：風險低，讓魔法師給你最佳投資建議(需等待約40秒)")
-            line_bot_api.push_message(user_id, message)
-            
-    elif  text == "風險低":
-        record_risk(user_id, 1)
-        data_holdings = stock_crawl("近四季–ROA(%)–本季度", 1, "市值 (億元)",0,"股價統計_歷年直接平均","近3年平均均","產業類別||金控業")
-        data_banking = stock_crawl("近四季–ROA(%)–本季度", 1, "市值 (億元)",0,"股價統計_歷年直接平均","近3年平均","產業類別||銀行業")
-        data_Finance = pd.concat([data_holdings, data_banking])
-        Finance_stocks = screen(data_Finance)
-        if len(Finance_stocks) != 0: 
-            #record_stock(user_id, " / ".join(Finance_stocks))
-            message = TextSendMessage(text= "今日個股推薦：\n"+" / ".join(Finance_stocks) +"\n\n請輸入預算，如：1000 / 23550 / 4500")
-            line_bot_api.push_message(user_id, message)
-
-        else:
-            #record_stock(user_id, "今日無推薦個股")
-            message = TextSendMessage(text= "今日無推薦個股")
-            line_bot_api.push_message(user_id, message)
-
-
-
-
-    #elif Risk_Tolerance == 2 :
-    elif text == "風險中":
-        record_risk(user_id, 2)
-       
-        #權值股爬蟲-風險承受度中
-      
-        data = stock_crawl("年度–ROE(%)",15, "市值 (億元)",1700,"股價統計_歷年直接平均","近3年平均","")
-        weighted_stocks = screen(data)
-        if len(weighted_stocks) != 0:
-            #record_stock(user_id, " / ".join(weighted_stocks))
-            message = TextSendMessage(text="今日個股推薦：\n"+" / ".join(weighted_stocks)+"\n\n請輸入預算，如：1000 / 24430 / 4500")
-            line_bot_api.push_message(user_id, message)
-        else:
-            #record_stock(user_id, "今日無推薦個股")
-            message = TextSendMessage(text= "今日無推薦個股")
-            line_bot_api.push_message(user_id, message)
-
-
-    #elif Risk_Tolerance == 3 :
-    elif text == "風險高":
-        record_risk(user_id, 3)
-        
-        #轉強股爬蟲 - 風險承受度高
-
-        data_strong = stock_crawl("當日：紅K棒棒幅(%)", 4, "單月營收年增減率(%)",20,"股價統計_歷年直接平均","近3年平均均","")
-        data_strong = screen1(data_strong)
-        if len(data_strong) != 0:
-            #record_stock(user_id, " / ".join(data_strong))
-            message = TextSendMessage(text= "今日個股推薦：\n"+" / ".join(data_strong)+"\n\n請輸入預算，如：1000 / 28870 / 4500")
-            line_bot_api.push_message(user_id, message)
-        else:
-            #record_stock(user_id, "今日無推薦個股")
-            message = TextSendMessage(text= "今日無推薦個股")
-            line_bot_api.push_message(user_id, message)
-    elif text == int:
+    if text.isdigit():
         fortune_index = get_fortune_index(user_id)
         Risk_Tolerance = get_risk(user_id)
         balance = int(text)
@@ -492,22 +160,355 @@ def handle_message(event):
                 balance = balance*1
         message = TextSendMessage(text= "今日推薦投入金額：\n"+ round(balance) +"元")
         line_bot_api.push_message(user_id, message)
- 
+    else:
+        if text == "開始":
+            buttons_template = ButtonsTemplate(
+                title='魔法師咒語', text='請選擇星座(這裡是水象星座)', actions=[
+                    MessageAction(
+                        label='雙魚座',
+                        text='雙魚座'
+                    ),
+                    MessageAction(
+                        label='巨蟹座',
+                        text='巨蟹座'
+                    ),
+                    MessageAction(
+                        label='天蠍座',
+                        text='天蠍座'
+
+                    )
+                ])
+            template_message = TemplateSendMessage(
+                alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
+            line_bot_api.push_message(user_id, template_message)
+
+            buttons_template = ButtonsTemplate(
+                title='魔法師咒語', text='請選擇星座(這裡是火象星座)', actions=[
+                    MessageAction(
+                        label='牡羊座',
+                        text='牡羊座'
+                    ),
+                    MessageAction(
+                        label='射手座',
+                        text='射手座'
+                    ),
+                    MessageAction(
+                        label='獅子座',
+                        text='獅子座'
+
+                    )
+                ])
+            template_message = TemplateSendMessage(
+                alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
+            line_bot_api.push_message(user_id, template_message)
+
+            buttons_template = ButtonsTemplate(
+                title='魔法師咒語', text='請選擇星座(這裡是風象星座)', actions=[
+                    MessageAction(
+                        label='天秤座',
+                        text='天秤座'
+                    ),
+                    MessageAction(
+                        label='雙子座',
+                        text='雙子座'
+                    ),
+                    MessageAction(
+                        label='水瓶座',
+                        text='水瓶座'
+                    )
+                ])
+            template_message = TemplateSendMessage(
+                alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
+            line_bot_api.push_message(user_id, template_message)
+
+            buttons_template = ButtonsTemplate(
+                title='魔法師咒語', text='請選擇星座(這裡是土象星座)', actions=[
+                    MessageAction(
+                        label='處女座',
+                        text='處女座'
+                    ),
+                    MessageAction(
+                        label='摩羯座',
+                        text='摩羯座'
+                    ),
+                    MessageAction(
+                        label='金牛座',
+                        text='金牛座'
+                    )
+                ])
+            template_message = TemplateSendMessage(
+                alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
+            line_bot_api.push_message(user_id, template_message)
+
+
+
+
+
+
+        elif text == "天蠍座":
+            website_address = "https://astro.click108.com.tw/daily_7.php?iAstro=7#lucky"
+            dic_constellation = crawl(website_address)
+
+            message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
+            line_bot_api.push_message(user_id, message)
+
+            if int(dic_constellation["fortune_index"]) >= 3:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+            if int(dic_constellation["fortune_index"]) <= 2:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+            record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
+
+        elif text == "水瓶座":
+            website_address = "https://astro.click108.com.tw/daily_10.php?iAstro=10&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
+            dic_constellation = crawl(website_address)
+
+            message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
+            line_bot_api.push_message(user_id, message)
+
+            if int(dic_constellation["fortune_index"]) >= 3:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+            if int(dic_constellation["fortune_index"]) <= 2:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+
+            record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
+
+        elif text == "雙魚座":
+            website_address = "https://astro.click108.com.tw/daily_11.php?iAstro=11&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
+            dic_constellation = crawl(website_address)
+
+            message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
+            line_bot_api.push_message(user_id, message)
+
+            if int(dic_constellation["fortune_index"]) >= 3:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+            if int(dic_constellation["fortune_index"]) <= 2:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+
+            record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
+
+        elif text == "牡羊座":
+            website_address = "https://astro.click108.com.tw/daily_0.php?iAstro=0&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
+            dic_constellation = crawl(website_address)
+
+            message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
+            line_bot_api.push_message(user_id, message)
+
+            if int(dic_constellation["fortune_index"]) >= 3:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+            if int(dic_constellation["fortune_index"]) <= 2:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+
+            record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
+
+        elif text == "金牛座":
+            website_address = "https://astro.click108.com.tw/daily_1.php?iAstro=1&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
+            dic_constellation = crawl(website_address)
+
+            message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
+            line_bot_api.push_message(user_id, message)
+
+            if int(dic_constellation["fortune_index"]) >= 3:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+            if int(dic_constellation["fortune_index"]) <= 2:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+
+            record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
+
+        elif text == "雙子座":
+            website_address = "https://astro.click108.com.tw/daily_2.php?iAstro=2&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
+            dic_constellation = crawl(website_address)
+
+            message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
+            line_bot_api.push_message(user_id, message)
+
+            if int(dic_constellation["fortune_index"]) >= 3:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+            if int(dic_constellation["fortune_index"]) <= 2:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+
+            record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
+
+        elif text == "巨蟹座":
+            website_address = "https://astro.click108.com.tw/daily_3.php?iAstro=3&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
+            dic_constellation = crawl(website_address)
+
+            message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
+            line_bot_api.push_message(user_id, message)
+
+            if int(dic_constellation["fortune_index"]) >= 3:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+            if int(dic_constellation["fortune_index"]) <= 2:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+
+            record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
+
+        elif text == "獅子座":
+            website_address = "https://astro.click108.com.tw/daily_4.php?iAstro=4&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
+            dic_constellation = crawl(website_address)
+
+            message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
+            line_bot_api.push_message(user_id, message)
+
+            if int(dic_constellation["fortune_index"]) >= 3:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+            if int(dic_constellation["fortune_index"]) <= 2:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+
+            record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
+
+        elif text == "處女座":
+            website_address = "https://astro.click108.com.tw/daily_5.php?iAstro=5&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
+            dic_constellation = crawl(website_address)
+
+            message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
+            line_bot_api.push_message(user_id, message)
+
+            if int(dic_constellation["fortune_index"]) >= 3:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+            if int(dic_constellation["fortune_index"]) <= 2:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+
+            record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
+
+        elif text == "天秤座":
+            website_address = "https://astro.click108.com.tw/daily_6.php?iAstro=6&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
+            dic_constellation = crawl(website_address)
+
+            message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
+            line_bot_api.push_message(user_id, message)
+
+            if int(dic_constellation["fortune_index"]) >= 3:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+            if int(dic_constellation["fortune_index"]) <= 2:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+
+            record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
+
+        elif text == "射手座":
+            website_address = "https://astro.click108.com.tw/daily_8.php?iAstro=8&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
+            dic_constellation = crawl(website_address)
+
+            message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
+            line_bot_api.push_message(user_id, message)
+
+            if int(dic_constellation["fortune_index"]) >= 3:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+            if int(dic_constellation["fortune_index"]) <= 2:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+
+            record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
+
+        elif text == "摩羯座":
+            website_address = "https://astro.click108.com.tw/daily_9.php?iAstro=9&Type=0&iAcDay=" + time.strftime('%Y-%m-%d+1', time.localtime())
+            dic_constellation = crawl(website_address)
+
+            message = TextSendMessage(text="今天財運描述: \n"+dic_constellation["fortune_descri"])
+            line_bot_api.push_message(user_id, message)
+
+            if int(dic_constellation["fortune_index"]) >= 3:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天您適合投資喔！想繼續看下去的話，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+            if int(dic_constellation["fortune_index"]) <= 2:
+                message = TextSendMessage(text="今天財運指數: \n"+dic_constellation["fortune_index"]+"顆🌟" + "今天的運勢不太適合投資呢，若仍想繼續看下去，請打：財運滾滾來")
+                line_bot_api.push_message(user_id, message)
+
+            record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
+
+        elif text == "財運滾滾來":
+                message = TextSendMessage(text="請輸入您的風險承受度，如：風險高 / 如：風險中 / 如：風險低，讓魔法師給你最佳投資建議(需等待約40秒)")
+                line_bot_api.push_message(user_id, message)
+
+        elif  text == "風險低":
+            record_risk(user_id, 1)
+            data_holdings = stock_crawl("近四季–ROA(%)–本季度", 1, "市值 (億元)",0,"股價統計_歷年直接平均","近3年平均均","產業類別||金控業")
+            data_banking = stock_crawl("近四季–ROA(%)–本季度", 1, "市值 (億元)",0,"股價統計_歷年直接平均","近3年平均","產業類別||銀行業")
+            data_Finance = pd.concat([data_holdings, data_banking])
+            Finance_stocks = screen(data_Finance)
+            if len(Finance_stocks) != 0: 
+                #record_stock(user_id, " / ".join(Finance_stocks))
+                message = TextSendMessage(text= "今日個股推薦：\n"+" / ".join(Finance_stocks) +"\n\n請輸入預算，如：1000 / 23550 / 4500")
+                line_bot_api.push_message(user_id, message)
+
+            else:
+                #record_stock(user_id, "今日無推薦個股")
+                message = TextSendMessage(text= "今日無推薦個股")
+                line_bot_api.push_message(user_id, message)
+
+
+
+
+        #elif Risk_Tolerance == 2 :
+        elif text == "風險中":
+            record_risk(user_id, 2)
+
+            #權值股爬蟲-風險承受度中
+
+            data = stock_crawl("年度–ROE(%)",15, "市值 (億元)",1700,"股價統計_歷年直接平均","近3年平均","")
+            weighted_stocks = screen(data)
+            if len(weighted_stocks) != 0:
+                #record_stock(user_id, " / ".join(weighted_stocks))
+                message = TextSendMessage(text="今日個股推薦：\n"+" / ".join(weighted_stocks)+"\n\n請輸入預算，如：1000 / 24430 / 4500")
+                line_bot_api.push_message(user_id, message)
+            else:
+                #record_stock(user_id, "今日無推薦個股")
+                message = TextSendMessage(text= "今日無推薦個股")
+                line_bot_api.push_message(user_id, message)
+
+
+        #elif Risk_Tolerance == 3 :
+        elif text == "風險高":
+            record_risk(user_id, 3)
+
+            #轉強股爬蟲 - 風險承受度高
+
+            data_strong = stock_crawl("當日：紅K棒棒幅(%)", 4, "單月營收年增減率(%)",20,"股價統計_歷年直接平均","近3年平均均","")
+            data_strong = screen1(data_strong)
+            if len(data_strong) != 0:
+                #record_stock(user_id, " / ".join(data_strong))
+                message = TextSendMessage(text= "今日個股推薦：\n"+" / ".join(data_strong)+"\n\n請輸入預算，如：1000 / 28870 / 4500")
+                line_bot_api.push_message(user_id, message)
+            else:
+                #record_stock(user_id, "今日無推薦個股")
+                message = TextSendMessage(text= "今日無推薦個股")
+                line_bot_api.push_message(user_id, message)
+   
         
     
-    elif text == "結束":
-        pass
+        elif text == "結束":
+            pass
 
-    else:
-        buttons_template = ButtonsTemplate(
-            title='魔法師的小幫手', text='您可能輸入錯誤了，請重新選擇', actions=[
-                MessageAction(label='想輸入投資風險跟預算', text='財運滾滾來'),#幫用戶說一段指定訊息
-                MessageAction(label='今天問夠了，魔法師請休息', text='結束'),#幫用戶說一段指定訊息
-                MessageAction(label='想要輸入星座再玩一次', text='開始')#幫用戶說一段指定訊息
-            ])
-        template_message = TemplateSendMessage(
-            alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
-        line_bot_api.reply_message(event.reply_token, template_message)
+        else:
+            buttons_template = ButtonsTemplate(
+                title='魔法師的小幫手', text='您可能輸入錯誤了，請重新選擇', actions=[
+                    MessageAction(label='想輸入投資風險跟預算', text='財運滾滾來'),#幫用戶說一段指定訊息
+                    MessageAction(label='今天問夠了，魔法師請休息', text='結束'),#幫用戶說一段指定訊息
+                    MessageAction(label='想要輸入星座再玩一次', text='開始')#幫用戶說一段指定訊息
+                ])
+            template_message = TemplateSendMessage(
+                alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
+            line_bot_api.reply_message(event.reply_token, template_message)
     
 import os
 if __name__ == "__main__":
