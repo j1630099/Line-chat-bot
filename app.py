@@ -521,7 +521,7 @@ def handle_message(event):
 ####修改的###
 
 #### 一定要放在最後面的，注意有 “else"，所以新的東西請都加在上面喔 by 宜臻 ###
-        
+    """    
     elif text == "結束":
         pass
 
@@ -535,8 +535,7 @@ def handle_message(event):
         template_message = TemplateSendMessage(
             alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
         line_bot_api.reply_message(event.reply_token, template_message)
-  
-
+    """
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
