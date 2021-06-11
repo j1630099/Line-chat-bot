@@ -12,7 +12,7 @@ from crawl_constellation import crawl
 import time
 
 ####修改的###
-from Stock_market_crawler import screen ,screen1
+"""from Stock_market_crawler import screen ,screen1
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -66,7 +66,7 @@ def stock_crawl(FL_ITEM0,FL_VAL_S0, FL_ITEM1,FL_VAL_S1,FL_SHEET,FL_SHEET2,FL_RUL
     a = df[df['名稱'].isin(["名稱"])].index
     df = df.drop(a)
     
-    return df
+    return df"""
 ####修改的###
 
 
@@ -414,7 +414,7 @@ def handle_message(event):
 ####修改的###
     #Risk_Tolerance =  int(get_risk(user_id))
     #if Risk_Tolerance == 1 :
-    if text == "風險低": 
+    """if text == "風險低": 
         #金融股爬蟲 - 風險承受度低
    
         data_holdings = stock_crawl("近四季–ROA(%)–本季度", 1, "市值 (億元)",0,"股價統計_歷年直接平均","近3年平均均","產業類別||金控業")
@@ -517,7 +517,7 @@ def handle_message(event):
             balance = balance*1
 
         message = TextSendMessage(text= balance)
-        line_bot_api.push_message(user_id, message)
+        line_bot_api.push_message(user_id, message)"""
 ####修改的###
 
 #### 一定要放在最後面的，注意有 “else"，所以新的東西請都加在上面喔 by 宜臻 ###
