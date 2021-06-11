@@ -400,7 +400,7 @@ def handle_message(event):
         Finance_stocks = screen(data_Finance)
         if len(Finance_stocks) != 0: 
             #record_stock(user_id, " / ".join(Finance_stocks))
-            message = TextSendMessage(text= "今日個股推薦：\n"+" / ".join(Finance_stocks) +"\n 請輸入預算，如：1000 / 20000 / 4500")
+            message = TextSendMessage(text= "今日個股推薦：\n"+" / ".join(Finance_stocks) +"\n\n請輸入預算，如：1000 / 23550 / 4500")
             line_bot_api.push_message(user_id, message)
 
         else:
@@ -420,7 +420,7 @@ def handle_message(event):
         weighted_stocks = screen(data)
         if len(weighted_stocks) != 0:
             #record_stock(user_id, " / ".join(weighted_stocks))
-            message = TextSendMessage(text="今日個股推薦：\n"+" / ".join(weighted_stocks)+"\n 請輸入預算，如：1000 / 20000 / 4500")
+            message = TextSendMessage(text="今日個股推薦：\n"+" / ".join(weighted_stocks)+"\n\n請輸入預算，如：1000 / 24430 / 4500")
             line_bot_api.push_message(user_id, message)
         else:
             #record_stock(user_id, "今日無推薦個股")
@@ -437,7 +437,7 @@ def handle_message(event):
         data_strong = screen1(data_strong)
         if len(data_strong) != 0:
             #record_stock(user_id, " / ".join(data_strong))
-            message = TextSendMessage(text= "今日個股推薦：\n"+" / ".join(data_strong)+"\n 請輸入預算，如：1000 / 20000 / 4500")
+            message = TextSendMessage(text= "今日個股推薦：\n"+" / ".join(data_strong)+"\n\n請輸入預算，如：1000 / 28870 / 4500")
             line_bot_api.push_message(user_id, message)
         else:
             #record_stock(user_id, "今日無推薦個股")
