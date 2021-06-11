@@ -159,6 +159,7 @@ def handle_message(event):
                 balance = balance*0.91
             elif Risk_Tolerance == 3:
                 balance = balance*1
+        record_amount(user_id,int(balance))
         message = TextSendMessage(text= "今日推薦投入金額：\n"+ round(balance) +"元")
         line_bot_api.push_message(user_id, message)
     else:
