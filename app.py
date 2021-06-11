@@ -393,6 +393,56 @@ def handle_message(event):
             message = TextSendMessage(text="請輸入您的風險承受度，如：風險高 / 如：風險中 / 如：風險低，讓魔法師給你最佳投資建議")
             line_bot_api.push_message(user_id, message)
             
+    elif  text == "風險低":
+        data_holdings = stock_crawl("近四季–ROA(%)–本季度", 1, "市值 (億元)",0,"股價統計_歷年直接平均","近3年平均均","產業類別||金控業")
+        data_banking = stock_crawl("近四季–ROA(%)–本季度", 1, "市值 (億元)",0,"股價統計_歷年直接平均","近3年平均","產業類別||銀行業")
+        data_Finance = pd.concat([data_holdings, data_banking])
+        Finance_stocks = screen(data_Finance)
+        if len(Finance_stocks) != 0: 
+            #record_stock(user_id, " / ".join(Finance_stocks))
+            message = TextSendMessage(text= " / ".join(Finance_stocks))
+            line_bot_api.push_message(user_id, message)
+
+        else:
+            #record_stock(user_id, "今日無推薦個股")
+            message = TextSendMessage(text= "今日無推薦個股")
+            line_bot_api.push_message(user_id, message)
+
+
+
+    #elif Risk_Tolerance == 2 :
+    elif text == "風險中":
+       
+        #權值股爬蟲-風險承受度中
+      
+        data = stock_crawl("年度–ROE(%)",15, "市值 (億元)",1700,"股價統計_歷年直接平均","近3年平均","")
+        weighted_stocks = screen(data)
+        if len(weighted_stocks) != 0:
+            #record_stock(user_id, " / ".join(weighted_stocks))
+            message = TextSendMessage(text= " / ".join(weighted_stocks))
+            line_bot_api.push_message(user_id, message)
+        else:
+            #record_stock(user_id, "今日無推薦個股")
+            message = TextSendMessage(text= "今日無推薦個股")
+            line_bot_api.push_message(user_id, message)
+
+
+    #elif Risk_Tolerance == 3 :
+    elif text == "風險高":
+        
+        #轉強股爬蟲 - 風險承受度高
+
+        data_strong = stock_crawl("當日：紅K棒棒幅(%)", 4, "單月營收年增減率(%)",20,"股價統計_歷年直接平均","近3年平均均","")
+        data_strong = screen1(data_strong)
+        if len(data_strong) != 0:
+            #record_stock(user_id, " / ".join(data_strong))
+            message = TextSendMessage(text= " / ".join(data_strong))
+            line_bot_api.push_message(user_id, message)
+        else:
+            #record_stock(user_id, "今日無推薦個股")
+            message = TextSendMessage(text= "今日無推薦個股")
+            line_bot_api.push_message(user_id, message)
+            
          
     """elif text == "結束":
         pass
@@ -414,7 +464,7 @@ def handle_message(event):
 ####修改的###
     #Risk_Tolerance =  int(get_risk(user_id))
     #if Risk_Tolerance == 1 :
-    elif  text == "風險低":
+    """elif  text == "風險低":
         #金融股爬蟲 - 風險承受度低
    
         data_holdings = stock_crawl("近四季–ROA(%)–本季度", 1, "市值 (億元)",0,"股價統計_歷年直接平均","近3年平均均","產業類別||金控業")
@@ -464,7 +514,7 @@ def handle_message(event):
         else:
             #record_stock(user_id, "今日無推薦個股")
             message = TextSendMessage(text= "今日無推薦個股")
-            line_bot_api.push_message(user_id, message)
+            line_bot_api.push_message(user_id, message)"""
 ####修改的###
 #預算計算#
    """record_budget(user_id,text)
