@@ -114,7 +114,7 @@ def handle_message(event):
     text=event.message.text
     user_id = event.source.user_id
     
-    if text.isdigit():
+    if text is int :
         fortune_index = get_fortune_index(user_id)
         Risk_Tolerance = get_risk(user_id)
         balance = int(text)
