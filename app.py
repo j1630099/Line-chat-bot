@@ -49,14 +49,14 @@ def stock_crawl(FL_ITEM0,FL_VAL_S0, FL_ITEM1,FL_VAL_S1,FL_SHEET,FL_SHEET2,FL_RUL
     #請求網站
     list_req = requests.get(url, headers = headers,  params = my_params )
     chrome.get(list_req.url)
-    query_button = browser.find_element_by_css_selector("#MENU10 > tbody > tr:nth-child(2) > td > form > table > tbody > tr:nth-child(19) > td:nth-child(2) > table > tbody > tr > td:nth-child(2) > nobr > input[type=submit]")
+    query_button = chrome.find_element_by_css_selector("#MENU10 > tbody > tr:nth-child(2) > td > form > table > tbody > tr:nth-child(19) > td:nth-child(2) > table > tbody > tr > td:nth-child(2) > nobr > input[type=submit]")
     query_button.click()
     sleep(0.5)
     #list_button_ = browser.find_element_by_css_selector("#selSHEET").click()
     #sleep(0.5)
     #stoavg_button = browser.find_element_by_css_selector("#selSHEET > option:nth-child(number)".replace("number",str(num))).click()
     #sleep(15)
-    soup = BeautifulSoup(browser.page_source, 'html.parser')
+    soup = BeautifulSoup(chrome.page_source, 'html.parser')
     
     table = soup.find('table', {'id': 'tblStockList'})
     df = pd.read_html(table.prettify())
