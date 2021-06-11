@@ -446,7 +446,7 @@ def handle_message(event):
             #record_stock(user_id, "今日無推薦個股")
             message = TextSendMessage(text= "今日無推薦個股")
             line_bot_api.push_message(user_id, message)
-    elif type(text) == int:
+    elif text == int:
         fortune_index = get_fortune_index(user_id)
         Risk_Tolerance = get_risk(user_id)
         balance = int(text)
