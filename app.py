@@ -410,6 +410,7 @@ def handle_message(event):
 
 
 
+
     #elif Risk_Tolerance == 2 :
     elif text == "風險中":
        
@@ -442,6 +443,26 @@ def handle_message(event):
             #record_stock(user_id, "今日無推薦個股")
             message = TextSendMessage(text= "今日無推薦個股")
             line_bot_api.push_message(user_id, message)
+       
+    
+    elif text == "結束":
+        pass
+
+    else:
+        buttons_template = ButtonsTemplate(
+            title='魔法師的小幫手', text='您可能輸入錯誤了，請重新選擇', actions=[
+                MessageAction(label='想輸入投資風險跟預算', text='財運滾滾來'),#幫用戶說一段指定訊息
+                MessageAction(label='今天問夠了，魔法師請休息', text='結束'),#幫用戶說一段指定訊息
+                MessageAction(label='想要輸入星座再玩一次', text='開始')#幫用戶說一段指定訊息
+            ])
+        template_message = TemplateSendMessage(
+            alt_text='請到手機版確認魔法師的箴言喔！', template=buttons_template) #alt_text為無法輸出時產生的字樣
+        line_bot_api.reply_message(event.reply_token, template_message)
+    
+import os
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
             
          
     """elif text == "結束":
@@ -567,7 +588,7 @@ def handle_message(event):
             balance = balance*1
 
         message = TextSendMessage(text= balance)
-        line_bot_api.push_message(user_id, message)"""
+        line_bot_api.push_message(user_id, message)
 ####修改的###
 
 #### 一定要放在最後面的，注意有 “else"，所以新的東西請都加在上面喔 by 宜臻 ###
@@ -589,4 +610,4 @@ def handle_message(event):
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port)"""
