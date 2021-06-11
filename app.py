@@ -394,10 +394,10 @@ def handle_message(event):
             line_bot_api.push_message(user_id, message)
             
          
-    elif text == "結束":
+    """elif text == "結束":
         pass
 
-    """else:
+    else:
         buttons_template = ButtonsTemplate(
             title='魔法師的小幫手', text='您可能輸入錯誤了，請重新選擇', actions=[
                 MessageAction(label='想輸入投資風險跟預算', text='財運滾滾來'),#幫用戶說一段指定訊息
@@ -414,7 +414,7 @@ def handle_message(event):
 ####修改的###
     #Risk_Tolerance =  int(get_risk(user_id))
     #if Risk_Tolerance == 1 :
-    elif text == "風險低": 
+    elif  text == "風險低":
         #金融股爬蟲 - 風險承受度低
    
         data_holdings = stock_crawl("近四季–ROA(%)–本季度", 1, "市值 (億元)",0,"股價統計_歷年直接平均","近3年平均均","產業類別||金控業")
