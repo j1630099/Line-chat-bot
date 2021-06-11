@@ -390,7 +390,7 @@ def handle_message(event):
         record_user_info(user_id, text, dic_constellation["fortune_index"], dic_constellation["luc_time"])
     
     elif text == "財運滾滾來":
-            message = TextSendMessage(text="請輸入您的風險承受度，如：風險高 / 如：風險中 / 如：風險低，讓魔法師給你最佳投資建議")
+            message = TextSendMessage(text="請輸入您的風險承受度，如：風險高 / 如：風險中 / 如：風險低，讓魔法師給你最佳投資建議(需等待約40秒)")
             line_bot_api.push_message(user_id, message)
             
     elif  text == "風險低":
@@ -400,7 +400,7 @@ def handle_message(event):
         Finance_stocks = screen(data_Finance)
         if len(Finance_stocks) != 0: 
             #record_stock(user_id, " / ".join(Finance_stocks))
-            message = TextSendMessage(text= " / ".join(Finance_stocks))
+            message = TextSendMessage(text= "今日個股推薦:" +　" / ".join(Finance_stocks))
             line_bot_api.push_message(user_id, message)
 
         else:
@@ -420,7 +420,7 @@ def handle_message(event):
         weighted_stocks = screen(data)
         if len(weighted_stocks) != 0:
             #record_stock(user_id, " / ".join(weighted_stocks))
-            message = TextSendMessage(text= " / ".join(weighted_stocks))
+            message = TextSendMessage(text="今日個股推薦:" + " / ".join(weighted_stocks))
             line_bot_api.push_message(user_id, message)
         else:
             #record_stock(user_id, "今日無推薦個股")
@@ -437,7 +437,7 @@ def handle_message(event):
         data_strong = screen1(data_strong)
         if len(data_strong) != 0:
             #record_stock(user_id, " / ".join(data_strong))
-            message = TextSendMessage(text= " / ".join(data_strong))
+            message = TextSendMessage(text= "今日個股推薦:" + " / ".join(data_strong))
             line_bot_api.push_message(user_id, message)
         else:
             #record_stock(user_id, "今日無推薦個股")
