@@ -21,7 +21,7 @@ from selenium.webdriver.chrome.options import Options
 import pandas as pd
 from pyquery import PyQuery as pq
 from time import sleep
-from database_functions import  get_fortune_index,get_risk,get_budget,record_stock,record_amount
+from database_functions import  get_fortune_index,get_risk,get_budget,record_stock,record_amount,record_user_info
 
 
 
