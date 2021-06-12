@@ -162,6 +162,36 @@ def handle_message(event):
         record_amount(user_id,int(balance))
         message = TextSendMessage(text= "今日推薦投入金額：\n"+ str(round(balance))+"元")
         line_bot_api.push_message(user_id, message)
+        
+        #推薦下單時間
+        lucy_time = get_lucy_time(user_id)
+        if 'pm' in lucy_time:
+            lucy_time_lst = lucy_time.replace('pm','').split('-')
+            times = []
+            for i in lucy_time_lst:
+                times.append(int(i.replace(':00','')) + 12)
+        elif 'am' in lucy_time:
+            lucy_time_lst = lucy_time.replace('am','').split('-')
+            times = []
+            for i in lucy_time_lst:
+                times.append(int(i.replace(':00','')))
+
+        if times[0] < 9 and times[1] > 13:
+            reply = '以上，準備好下單了嗎～'
+        elif times[0] >= 9 and times[1] <= 13:
+            reply = '以上，可以考慮在你的幸運時間' + lucy_time + '下單喔～'
+        elif times[0] < 9 and 12 >= times[1] > 9:
+            reply = '以上，可以考慮在你的幸運時間9:00-' + str(times[1]) + ':00am下單喔～'
+        elif times[0] < 9 and 13 >= times[1] > 12:
+            reply = '以上，可以考慮在你的幸運時間9:00-' + str(times[1]) + ':00pm下單喔～'
+        elif 9 <= times[0] < 13 and times[1] > 13:
+            reply = '以上，可以考慮在你的幸運時間' + str(times[0]) + ':00-13:00下單喔～'
+        else:
+            reply = '以上，準備好下單了嗎～'
+        
+        message = TextSendMessage(text=reply)
+        line_bot_api.push_message(user_id, message)
+        
     else:
         if text == "開始":
             buttons_template = ButtonsTemplate(
