@@ -189,7 +189,7 @@ def handle_message(event):
         else:
             reply = '以上，準備好下單了嗎～'
         
-        message = TextSendMessage(text=reply)
+        message = TextSendMessage(text= str(reply))
         line_bot_api.push_message(user_id, message)
         
     else:
