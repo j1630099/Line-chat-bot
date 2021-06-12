@@ -104,7 +104,9 @@ gc = gspread.authorize(credentials)
 sh = gc.open('星流派投資魔法師')
 ws = sh.worksheet('用戶輸入資訊')
 
-
+def get_lucy_time(name):
+    id_cell = ws.find(name)
+    return ws.cell(id_cell.row, 4).value 
 
 
 # 處理訊息  ＃以下確認要不要用 Reply
@@ -189,7 +191,7 @@ def handle_message(event):
         else:
             reply = '以上，準備好下單了嗎～'
         
-        message = TextSendMessage(text= str(reply))
+        message = TextSendMessage(text= reply)
         line_bot_api.push_message(user_id, message)
         
     else:
