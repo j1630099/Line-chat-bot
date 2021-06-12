@@ -21,7 +21,7 @@ from selenium.webdriver.chrome.options import Options
 import pandas as pd
 from pyquery import PyQuery as pq
 from time import sleep
-from database_functions import  get_fortune_index,get_risk,get_budget,record_stock,record_amount,record_risk,record_user_info,record_budget,get_amount
+from database_functions import  get_fortune_index,get_risk,get_budget,record_stock,record_amount,record_risk,record_user_info,record_budget,get_amount,get_lucy_time
 
 
 
@@ -104,9 +104,6 @@ gc = gspread.authorize(credentials)
 sh = gc.open('星流派投資魔法師')
 ws = sh.worksheet('用戶輸入資訊')
 
-def get_lucy_time(name):
-    id_cell = ws.find(name)
-    return ws.cell(id_cell.row, 4).value 
 
 
 # 處理訊息  ＃以下確認要不要用 Reply
